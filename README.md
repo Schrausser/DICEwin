@@ -1,2 +1,2 @@
 # DICEwin
-Random dice roll
+Quasi random number generator via simulated dice roll.
