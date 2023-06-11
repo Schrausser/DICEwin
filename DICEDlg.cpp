@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------| DICEDlg.cpp                                  //
-//                                                                        | DICE, Zufallswürfelzahl (deutsch)            //
+//                                                                        | DICE, ZufallswÃ¼rfelzahl (deutsch)            //
 //                                                                        | von Dietmar Schrausser, (C) SCHRAUSSER 2011  // 
 //
 #include "stdafx.h"
@@ -105,12 +105,12 @@ BOOL CDICEDlg::OnInitDialog()
 	ini_sw  = pApp->GetProfileInt("INI","sw",0);
 
 	fb_hg   = pApp->GetProfileInt("Farbe","Hintergrund",8421504); 
-	fb_wrf  = pApp->GetProfileInt("Farbe","Würfel",0);
+	fb_wrf  = pApp->GetProfileInt("Farbe","WÃ¼rfel",0);
 	fb_ag   = pApp->GetProfileInt("Farbe","Augen",16777215);
 	fb_zhl  = pApp->GetProfileInt("Farbe","Zahlen",16777215);
 	vms_    = pApp->GetProfileInt("Geschwindigkeit","msec",100);
 	von_    = pApp->GetProfileInt("Geschwindigkeit","onset",300);
-	vwl_    = pApp->GetProfileInt("Geschwindigkeit","Würfel",10);
+	vwl_    = pApp->GetProfileInt("Geschwindigkeit","WÃ¼rfel",10);
 	z_frm   = pApp->GetProfileInt("Zahlenformat","R",1);
 	sw_lg   = pApp->GetProfileInt("Logdatei","schreiben",1);
 
@@ -118,12 +118,12 @@ BOOL CDICEDlg::OnInitDialog()
 	if(ini_sw==0)//bei nicht vorhandener inidatei
 	{
 					pApp->WriteProfileInt("Farbe","Hintergrund",  fb_hg);   
-					pApp->WriteProfileInt("Farbe","Würfel",fb_wrf);
+					pApp->WriteProfileInt("Farbe","WÃ¼rfel",fb_wrf);
 					pApp->WriteProfileInt("Farbe","Augen",fb_ag);
 					pApp->WriteProfileInt("Farbe","Zahlen",fb_zhl);
 					pApp->WriteProfileInt("Geschwindigkeit","msec",vms_);
 					pApp->WriteProfileInt("Geschwindigkeit","onset",von_);
-					pApp->WriteProfileInt("Geschwindigkeit","Würfel",vwl_ );
+					pApp->WriteProfileInt("Geschwindigkeit","WÃ¼rfel",vwl_ );
 		if(z_frm==0)pApp->WriteProfileInt("Zahlenformat","N",1 );
 		if(z_frm==1)pApp->WriteProfileInt("Zahlenformat","N",0 );
 					pApp->WriteProfileInt("Zahlenformat","R",z_frm );
@@ -218,16 +218,16 @@ void CDICEDlg::OnPaint()
 			 ooo.TextOut(14,0,cc);
 			 }
 
-		                 CRect o1(dlg_x-38-x_, dlg_y-38, dlg_x-9-x_, dlg_y-9);//würfel
+		                 CRect o1(dlg_x-38-x_, dlg_y-38, dlg_x-9-x_, dlg_y-9);//wÃ¼rfel
 			 ooo.FillSolidRect(o1,  fb_wrf  );
 
-						 CRect o7(dlg_x-21-x_, dlg_y-21, dlg_x-26-x_, dlg_y-26);//würfel auge mitte
-					 	 CRect o3(dlg_x-33-x_, dlg_y-19, dlg_x-28-x_, dlg_y-14);//würfel auge lu
-						 CRect o4(dlg_x-19-x_, dlg_y-28, dlg_x-14-x_, dlg_y-33);//würfel auge ro
-						 CRect o2(dlg_x-19-x_, dlg_y-19, dlg_x-14-x_, dlg_y-14);//würfel auge ru
-						 CRect o5(dlg_x-33-x_, dlg_y-28, dlg_x-28-x_, dlg_y-33);//würfel auge lo
-						 CRect o9(dlg_x-33-x_, dlg_y-21, dlg_x-28-x_, dlg_y-26);//würfel auge mitte l
-						 CRect o8(dlg_x-19-x_, dlg_y-21, dlg_x-14-x_, dlg_y-26);//würfel auge mitte r
+						 CRect o7(dlg_x-21-x_, dlg_y-21, dlg_x-26-x_, dlg_y-26);//wÃ¼rfel auge mitte
+					 	 CRect o3(dlg_x-33-x_, dlg_y-19, dlg_x-28-x_, dlg_y-14);//wÃ¼rfel auge lu
+						 CRect o4(dlg_x-19-x_, dlg_y-28, dlg_x-14-x_, dlg_y-33);//wÃ¼rfel auge ro
+						 CRect o2(dlg_x-19-x_, dlg_y-19, dlg_x-14-x_, dlg_y-14);//wÃ¼rfel auge ru
+						 CRect o5(dlg_x-33-x_, dlg_y-28, dlg_x-28-x_, dlg_y-33);//wÃ¼rfel auge lo
+						 CRect o9(dlg_x-33-x_, dlg_y-21, dlg_x-28-x_, dlg_y-26);//wÃ¼rfel auge mitte l
+						 CRect o8(dlg_x-19-x_, dlg_y-21, dlg_x-14-x_, dlg_y-26);//wÃ¼rfel auge mitte r
 		
 		if(y_1==1)//rnd int == 1 
 		{	            
@@ -397,13 +397,13 @@ double CDICEDlg::qzufall(double seed)
 	return fn_erg;
 };
 
-//-----------------------------------------------------------| einstellungsvariablenübernahme funktionen
-void CDICEDlg::fhg_(int fhg){fb_hg=fhg;} //------------------| hintergrundfarbenfunkion
-void CDICEDlg::fwl_(int fwl){fb_wrf=fwl;} //-----------------| würfelfarbenfunkion
-void CDICEDlg::fag_(int fag){fb_ag=fag;} //------------------| augenfarbenfunkion
-void CDICEDlg::fzl_(int fzl){fb_zhl=fzl;} //-----------------| zahlenfarbenfunkion
-void CDICEDlg::v_ms(int vms){vms_=vms;} //-------------------| geschwindigkeit (würf in msec)
-void CDICEDlg::v_wl(int vwl){vwl_=vwl;} //-------------------| geschwindigkeit (würfel in msec)
+//-----------------------------------------------------------| einstellungsvariablenÃ¼bernahme funktionen
+void CDICEDlg::fhg_(int fhg){fb_hg=fhg;} //------------------| hintergrundfarbenfunktion
+void CDICEDlg::fwl_(int fwl){fb_wrf=fwl;} //-----------------| wÃ¼rfelfarbenfunktion
+void CDICEDlg::fag_(int fag){fb_ag=fag;} //------------------| augenfarbenfunktion
+void CDICEDlg::fzl_(int fzl){fb_zhl=fzl;} //-----------------| zahlenfarbenfunktion
+void CDICEDlg::v_ms(int vms){vms_=vms;} //-------------------| geschwindigkeit (wÃ¼rf in msec)
+void CDICEDlg::v_wl(int vwl){vwl_=vwl;} //-------------------| geschwindigkeit (wÃ¼rfel in msec)
 void CDICEDlg::v_on(int von){von_=von;} //-------------------| geschwindigkeit (onset in msec)
 void CDICEDlg::zfrm(int zfrm_){z_frm=zfrm_;} //--------------| zahlenformat
 void CDICEDlg::lg_(int lg){sw_lg=lg;} //---------------------| log schreiben
